@@ -1,0 +1,608 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="LsLibraryMS.Web.demo1.Main" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+<%--     <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css" />
+
+    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.css" />--%>
+    
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/bootsnav.css" />
+    <link href="css/pager.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootsnav.js"></script>
+
+
+
+<%--    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>--%>
+
+
+    <style type="text/css">
+        body {
+            background-color: #f5f5f5;
+            background-image: url(img/banner.jpg);
+        }
+
+        .top5em {
+            margin-top: 3em;
+        }
+
+        .btright {
+            text-align: right;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            font-size: small;
+            float: right;
+        }
+
+        .btleft {
+            text-align: right;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            font-size: small;
+            float: left;
+        }
+
+        .subbt {
+            text-align: right;
+            width: 100%;
+            padding: 0% 20%;
+            float: right
+        }
+
+        .font_c_white {
+            color: white;
+        }
+
+        .jq22-header {
+            text-align: center;
+            font-size: small;
+            color: #898282;
+        }
+
+        .navbar-brand {
+            padding: 29px 15px;
+            height: auto;
+        }
+
+        nav.navbar.bootsnav {
+            border: none;
+            margin-bottom: 8px;
+        }
+
+        .navbar-nav {
+            float: left;
+        }
+
+        nav.navbar.bootsnav ul.nav > li > a {
+            color: #474747;
+            text-transform: uppercase;
+            padding: 30px;
+        }
+
+        nav.navbar.bootsnav ul.nav > li:hover {
+            background: #f4f4f4;
+        }
+
+        .nav > li:after {
+            content: "";
+            width: 0;
+            height: 5px;
+            background: #5d6464;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: all 0.5s ease 0s;
+        }
+
+        .nav li:hover {
+            background-color: #a5aeb0;
+        }
+
+        .nav > li:hover:after {
+            width: 100%;
+        }
+
+        nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after {
+            content: "+";
+            font-family: 'FontAwesome';
+            font-size: 16px;
+            font-weight: 500;
+            position: absolute;
+            top: 35%;
+            right: 10%;
+            transition: all 0.4s ease 0s;
+        }
+
+        nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after {
+            content: "\f105";
+            transform: rotate(90deg);
+        }
+
+        .dropdown-menu.multi-dropdown {
+            position: absolute;
+            left: -100% !important;
+        }
+
+        nav.navbar.bootsnav li.dropdown ul.dropdown-menu {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border: none;
+        }
+
+        @media only screen and (max-width:990px) {
+            nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after,
+            nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after {
+                content: " ";
+            }
+
+            .dropdown-menu.multi-dropdown {
+                left: 0 !important;
+            }
+
+            nav.navbar.bootsnav ul.nav > li:hover {
+                background: transparent;
+            }
+
+            nav.navbar.bootsnav ul.nav > li > a {
+                margin: 0;
+            }
+        }
+    </style>
+    <script src="js/base.js"></script>
+    <title>EMB图书馆里系统</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <img id="connect-test" style="display:none;" onload="conectSuccess()" onerror="conectError()" />
+        <script>
+ 
+                //get_status();
+                GetbrowserSys();
+                connectionLisner();
+         
+
+        </script>
+
+
+
+
+        <!-- 模态框lg -->
+        <div class="modal fade" id="tiplg">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <!-- 模态框头部 -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <h3>&times;</h3>
+                        </button>
+                        <h4 id="tiplg-h" class="modal-title">模态框头部</h4>
+
+                    </div>
+
+                    <!-- 模态框主体 -->
+                    <div id="tiplg-b" class="modal-body">
+                        模态框内容..
+                    </div>
+
+                    <!-- 模态框底部 -->
+                    <div id="tiplg-f" class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- 模态框 -->
+        <div class="modal fade" id="tip">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- 模态框头部 -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <h3>&times;</h3>
+                        </button>
+                        <h4 id="tip-h" class="modal-title">图书类型 添加/修改</h4>
+
+                    </div>
+
+                    <!-- 模态框主体 -->
+                    <div id="tip-b" class="modal-body">
+                     
+                    </div>
+
+                    <!-- 模态框底部 -->
+                    <div id="tip-f" class="modal-footer">
+                       
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+          <!-- 模态框 sm-->
+        <div class="modal fade" id="tipsm">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                    <!-- 模态框头部 -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <h3>&times;</h3>
+                        </button>
+                        <h4 id="tipsm-h" class="modal-title"></h4>
+
+                    </div>
+
+                    <!-- 模态框主体 -->
+                    <div id="tipsm-b" class="modal-body">
+                    </div>
+
+
+                    <!-- 模态框底部 -->
+                    <div id="tipsm-f" class="modal-footer">
+                
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <%--// bookinfo tip--%>
+        <%--<div class="form-group">
+                            <label for="booknum">图书条形码</label>
+                            <input type="text" class="form-control" id="booknum" placeholder="请输入图书条形码" disabled />
+                            <label for="bookname">图书名称</label>
+                            <input type="text" class="form-control" id="bookname" placeholder="请输入图书名称" />
+                            <label for="booktype">图书类型</label>
+                            <select id="book_type" class="form-control"></select>
+                            <label for="booksit">图书书架  <small>书架位置:-请选择</small></label>
+                            <select id="book_case" class="form-control"></select>
+                            <label for="bookcbs">出版社</label>
+                            <input type="text" class="form-control" id="bookcbs" placeholder="请输入出版社名称" />
+                            <label for="bookzz">作者</label>
+                            <input type="text" class="form-control" id="bookzz" placeholder="请输入作者名" />
+                            <label for="bookprice">图书定价</label>
+                            <input type="text" class="form-control" id="bookprice" placeholder="请输入图书定价" />
+                            <label for="bookreadnum">借阅次数</label>
+                            <input type="text" class="form-control" id="bookreadnum" placeholder="请输入借阅次数" />
+                        </div>--%>
+        <%-- <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button id="book_change" type="button" class="btn btn-secondary" data-dismiss="modal">确定</button>
+                        <button id="book_add" type="button" class="btn btn-secondary" data-dismiss="modal">确定</button>--%>
+
+        <%--bookinfi tipsm--%>
+        <%-- <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button id="book_delete" type="button" class="btn btn-secondary" data-dismiss="modal">确定</button>--%>
+
+
+
+
+       <%-- Type Tip--%>
+            <%-- '<label for="booktype_id">图书类型识别码(ID)</label>'
+                      '<input type="text" class="form-control" id="booktype_id" placeholder="请输入类型码" disabled />'
+                      '<label for="booktype_name">图书类型名称</label>'
+                      '<input type="text" class="form-control" id="booktype_name" placeholder="请输入类型名称" />'
+                      '<label for="booktype_readnum">图书类型可阅天数</label>'
+                      '<input type="text" class="form-control" id="booktype_readnum" placeholder="请输入图书可阅天数" />'--%>
+            <%-- '<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>'
+                        '<button id="booktype_change" type="button" class="btn btn-secondary" data-dismiss="modal">确定</button>'
+                       ' <button id="booktype_add" type="button" class="btn btn-secondary" data-dismiss="modal">确定</button>'--%>
+           <%-- Type smTip--%>
+           <%--' <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>'
+                        '<button id="booktype_delete" type="button" class="btn btn-secondary" data-dismiss="modal">确定</button>'--%>
+
+      
+
+        <%--CaseTip--%>
+
+          <%--         <label for="bookcase_id">图书位置识别码(ID)</label> 
+                       <input type="text" class="form-control" id="bookcase_id" placeholder="请输入类型码" disabled /> 
+                       <label for="bookcase_name">图书位置描述</label> 
+                       <input type="text" class="form-control" id="bookcase_name" placeholder="请输入类型名称" />--%> 
+
+          <%--          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button id="bookcase_change" type="button" class="btn btn-secondary" data-dismiss="modal">确定</button>
+                        <button id="bookcase_add" type="button" class="btn btn-secondary" data-dismiss="modal">确定</button>--%>
+
+
+        
+        <%--CaseTipSM--%>
+            <%--        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button id="bookcase_delete" type="button" class="btn btn-secondary" data-dismiss="modal">确定</button>--%>
+
+
+
+
+
+
+        <div>
+
+
+            <%--滚动字幕--%>
+            <header class="jq22-header" style="font-size: large; color: #3bcce0;">
+                <marquee behavior="alternate" scrollamount="8">欢迎来到EMB图书管理系统! <span style="font-size:xx-small;">POWER BY ASP.NET 三层练习 EMB/吃火星的宝宝  ZM 金(3)</span></marquee>
+            </header>
+
+            <%--导航--%>
+
+
+
+            <div id="navtop" class="jq22-container">
+
+                <div class="demo" style="padding: 2em 0;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <nav class="navbar navbar-default navbar-mobile bootsnav">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                                            <i class="fa fa-bars"></i>
+                                        </button>
+                                    </div>
+                                    <div class="collapse navbar-collapse" id="navbar-menu">
+                                        <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp">
+                                            <li><a href="index.aspx">首页</a></li>
+
+
+                                            <!--系统设置-->
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">系统设置</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="LibraryInfoSet.aspx">图书馆信息</a></li>
+                                                    <li><a href="AdministratorMangerPage.aspx">管理员设置</a></li>
+                                                  
+
+                                                 
+                                                </ul>
+                                            </li>
+
+
+                                            <!--读者管理-->
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">读者管理</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="ReaderTypeMangerPage.aspx">读者类型管理</a></li>
+                                                    <li><a href="ReaderInfo.aspx">读者档案</a></li>
+                                                    <%--<li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">1</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Custom Menu</a></li>
+                                                    <li><a href="#">Custom Menu</a></li>
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">1</a>
+                                                        <ul class="dropdown-menu multi-dropdown">
+                                                            <li><a href="http://www.jq22.com">1</a></li>
+                                                            <li><a href="#">Custom Menu</a></li>
+                                                            <li><a href="#">Custom Menu</a></li>
+                                                            <li><a href="#">Custom Menu</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">1</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>--%>
+                                                </ul>
+                                            </li>
+
+                                            <!--图书管理-->
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">图书管理</a>
+                                                <ul class="dropdown-menu">
+
+                                                    <li><a href="BookTypeMangerPage.aspx">图书类型管理</a></li>
+                                                    <li><a href="Search.aspx">图书档案</a></li>
+                                                      <li><a href="BookCaseMangerPage.aspx">图书存放管理</a></li>
+
+                                                
+                                                </ul>
+                                            </li>
+
+
+                                            <!--图书借还-->
+
+                                            <li class="dropdown">
+                                                <a href="BookTakePutPage.aspx" class="dropdown-toggle" data-toggle="dropdown">图书借还</a>
+                                              <%--  <ul class="dropdown-menu">
+                                                    <li><a href="#">图书借阅</a></li>
+                                                    <li><a href="#">图书续借</a></li>
+                                                    <li><a href="#">图书归还</a></li>
+
+                                                 
+
+                                                    
+                                                </ul>--%>
+                                            </li>
+
+
+
+                                            <!--系统查询-->
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">系统查询</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="Search.aspx">图书归档查询</a></li>
+                                                    <li><a href="BorrowBackMangerPage.aspx">图书借阅查询</a></li>
+                                                
+                                                </ul>
+                                            </li>
+
+
+
+
+                                            <li><a href="contact.aspx">联系我们</a></li>
+
+
+                                            <!--登录-->
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">账户操作</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">登录</a></li>
+
+                                                    <li><a href="#">登出</a></li>
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理员设置</a>
+                                                        <ul class="dropdown-menu">
+
+                                                            <li class="dropdown">
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">口令</a>
+                                                            </li>
+                                                            <li class="dropdown">
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理员</a>
+
+                                                            </li>
+
+                                                        </ul>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+
+
+
+                                            <li><i id="donav" class="fa fa-caret-up" style="font-size: 12px"><a href="#">OFF/ON 控制台
+                                            </a></i></li>
+
+
+                                        </ul>
+
+
+
+
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <%--内容--%>
+
+
+
+
+
+
+
+
+
+
+
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+
+
+
+
+
+
+
+            <nav id="nav" class="navbar  navbar-default navbar-fixed-bottom" role="navigation" style="height: 3%">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">EMB(图书管理)MS </a>
+                    </div>
+                    <div>
+
+                        <ul class="nav navbar-nav navbar-left">
+                            <p class="navbar-text navbar-left"><%=DateTime.Now.ToLocalTime().ToString("yy 年 MM 月 dd 日  ddd")%></p>
+
+
+                        </ul>
+                        <div class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Write Coding ---》" />
+                            </div>
+                            <button type="submit" class="btn btn-default">执行</button>
+                        </div>
+
+
+
+
+
+
+
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <p class="navbar-text">用户--</p>
+                            <li><a href="#"><span class="glyphicon glyphicon-user"></span>登录</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>退出</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </form>
+
+
+    <script src="js/model.js"></script>
+    <script src="js/ajx.js"></script>
+    <script src="js/dialog.js"></script>
+    <script src="js/initial.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $("#nav").hide();
+            $("#donav").click(function () {
+                $("#nav").toggle();
+            });
+        });
+    </script>
+</body>
+</html>
